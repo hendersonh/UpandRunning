@@ -14,6 +14,7 @@ region = "us-east-2"
 
 resource "aws_key_pair" "upandrunning-key" { 
     key_name = "upandrunning"
+
     public_key = file("~/.ssh/upandrunning.pub") # ssh-keygen -t ed25519
 }
     
