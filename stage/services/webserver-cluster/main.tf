@@ -14,13 +14,12 @@ region = "us-east-2"
 
 resource "aws_key_pair" "upandrunning-key" { 
     key_name = "upandrunning"
-
     public_key = file("./upandrunning.pub") # ssh-keygen -t ed25519
 }
     
 # Security Group for the Instances
 resource "aws_security_group" "instance" {
-    name = "terraform-example-instance"
+    prefixname_prefix =   "upandrunning-instance"
 
     ingress {
     from_port = var.server_port
