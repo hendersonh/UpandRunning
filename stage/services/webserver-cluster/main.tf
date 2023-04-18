@@ -19,7 +19,7 @@ resource "aws_key_pair" "upandrunning-key" {
     
 # Security Group for the Instances
 resource "aws_security_group" "instance" {
-    prefixname_prefix =   "upandrunning-instance"
+    name_prefix =   "upandrunning-instance"
 
     ingress {
     from_port = var.server_port
