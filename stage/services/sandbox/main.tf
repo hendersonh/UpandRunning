@@ -30,7 +30,7 @@ resource "aws_instance" "sandbox"{
     security_groups =  [aws_secuirity_group.sandbox.id]
     key_name = "upandrunning"
 
-    # Render the User Data script as a template
+    # Render the User Data script as a template 
     user_data = templatefile("user-data.tftpl", {
         server_port = var.server_port
         db_address = var.db_port 
