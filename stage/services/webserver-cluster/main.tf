@@ -198,7 +198,7 @@ data "terraform_remote_state" "mysql" {
     }
 }
 
-#output "remote_mysql_state" {
-#    value = "data.terraform_remote_state.mysql"
-#}
+output "remote_mysql_state" {
+    value = "data.terraform_remote_state.mysql"
+}
     
