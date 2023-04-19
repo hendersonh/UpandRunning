@@ -1,5 +1,5 @@
 #!/bin/bash
-cat > index.html <<-EOF
+cat <<EOF | sudo tee index.html
   <h1>Hello, World</h1>
   <p>DB address: ${db_address}</p>
   <p>DB port: ${db_port}</p>
