@@ -63,7 +63,7 @@ resource "aws_launch_configuration" "example" {
         echo "${data.terraform_remote_state.mysql.outputs.address}" >> index.html
         echo "${data.terraform_remote_state.mysql.outputs.port}" >> index.html
         nohup busybox httpd -f -p ${var.server_port} &
-        EOF
+        EOF  
 */  
     # Render the User Data script as a template
     user_data = templatefile("user-data.sh", {
