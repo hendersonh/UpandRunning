@@ -198,7 +198,13 @@ data "terraform_remote_state" "mysql" {
     }
 }
 
-output "remote_mysql_state" {
-    value = data.terraform_remote_state.mysql
+output "end_point_of_msql_database" {
+    value = data.terraform_remote_state.mysql.outputs.address
+    description = "End point of database server"
+}
+
+output "data-base-port-number" {
+    value = data.terraform_remote_state.mysql.outputs.port
+    description = "Database port number"
 }
     
