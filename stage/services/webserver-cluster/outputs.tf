@@ -5,11 +5,11 @@ output "alb_dns_name" {
 }
 
 output "mysql_endpoint" {
-  value = "data.terraform_remote_state.mysql.address"
+  value = data.terraform_remote_state.mysql.address
   description = "The end point of the mysql database"
 }
     
 output "mysql_port" {
-  value = "data.terraform_remote_state.mysql.port"
+  value = data.terraform_remote_state.mysql.port
   description = "The port number of the mysql database"
 }
