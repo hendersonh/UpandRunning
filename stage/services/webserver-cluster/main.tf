@@ -12,6 +12,19 @@ provider "aws" {
 region = "us-east-2"
 }
 
+# get database connection info.
+data "terraform_remote_state" "mysql" {
+    backend = "remote"
+
+    config = {
+        organization = "hendy"
+        workspaces = {
+            name = "mysql"
+        }
+    }
+}
+
+
 resource "aws_key_pair" "upandrunning-key" { 
     key_name = "upandrunning"
     public_key = file("${path.module}/upandrunning.pub") # ssh-keygen -t ed25519
@@ -45,7 +58,7 @@ resource "aws_launch_configuration" "example" {
     key_name =  "upandrunning" 
     
     user_data = <<EOF
-    #!/bin/bash
+        #!/bin/bash
         echo "Hello, World" >> index.html
         echo "${data.terraform_remote_state.mysql.outputs.address}" >> index.html
         echo "${data.terraform_remote_state.mysql.outputs.port}" >> index.html
@@ -187,16 +200,3 @@ resource "aws_lb_listener_rule" "asg" {
         target_group_arn = aws_lb_target_group.asg.arn
     }
 }
-
-# get database connection info.
-data "terraform_remote_state" "mysql" {
-    backend = "remote"
-
-    config = {
-        organization = "hendy"
-        workspaces = {
-            name = "mysql"
-        }
-    }
-}
-
