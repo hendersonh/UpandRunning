@@ -191,7 +191,7 @@ data "terraform_remote_state" "mysql" {
     backend = "remote"
 
     config = {
-        organizations = "hendy"
+        organization = "hendy"
         workspaces = {
             name = "mysql"
         }
