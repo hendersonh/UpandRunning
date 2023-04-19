@@ -67,8 +67,8 @@ resource "aws_launch_configuration" "example" {
 */  
     # Render the User Data script as a template
     user_data = templatefile("user-data.sh", {
-        server_port = var.server_port,
-        db_address = data.terraform_remote_state.mysql.outputs.address,
+        server_port = var.server_port
+        db_address = data.terraform_remote_state.mysql.outputs.address
         db_port = data.terraform_remote_state.mysql.outputs.port
     })
 
