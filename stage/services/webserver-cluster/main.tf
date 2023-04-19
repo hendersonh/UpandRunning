@@ -14,7 +14,7 @@ region = "us-east-2"
 
 resource "aws_key_pair" "upandrunning-key" { 
     key_name = "upandrunning"
-    public_key = file("${path.module}/upandrunning.rpub") # ssh-keygen -t ed25519
+    public_key = file("${path.module}/upandrunning.pub") # ssh-keygen -t ed25519
 }
     
 # Security Group for the Instances
@@ -185,3 +185,20 @@ resource "aws_lb_listener_rule" "asg" {
         target_group_arn = aws_lb_target_group.asg.arn
     }
 }
+
+# get database connection info.
+data "terraform_remote_state" "mysql" {
+    backend = "remote"
+
+    config = {
+        organizations = "hendy"
+        workspaces = {
+            name = "mysql"
+        }
+    }
+}
+
+output "remote_mysql_state" {
+    value = "data.terraform_remote_state.mysql"
+}
+    
