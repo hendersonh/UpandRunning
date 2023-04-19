@@ -57,7 +57,7 @@ resource "aws_launch_configuration" "example" {
     security_groups = [aws_security_group.instance.id]
     key_name =  "upandrunning" 
     
-    user_data = <<EOF
+    user_data = <<-EOF
         #!/bin/bash
         echo "Hello, World" >> index.html
         echo "${data.terraform_remote_state.mysql.outputs.address}" >> index.html
