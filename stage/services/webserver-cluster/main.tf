@@ -1,5 +1,5 @@
 
-module "webserver_cluster" "web_server" {
+module "webserver_cluster"  {
     source = "../../../modules/services/webserver-cluster"
 
     organization = "hendy"
