@@ -4,4 +4,5 @@ cat <<EOF > index.html
   <p>DB address: ${db_address}</p>
   <p>DB port: ${db_port}</p>
   EOF
-  nohup busybox httpd -f -p ${server_port} &
+  
+  busybox httpd -f -p ${server_port} &

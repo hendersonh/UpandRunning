@@ -27,3 +27,8 @@ variable "max_size" {
   description = "The maximun number of EC2 Instances in the ASG"
   type = number
 }
+
+variable "server_port" {
+  description = "Server port to open"
+  type = number
+}
