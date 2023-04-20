@@ -5,7 +5,7 @@ resource "aws_key_pair" "upandrunning-key" {
 }
     
 # Security Group for the sandbox 
-resource "security_group" "sandbox" {
+resource "aws_security_group" "sandbox" {
     name_prefix =   "sandbox-"
 
     ingress {
@@ -24,10 +24,9 @@ resource "security_group" "sandbox" {
 }
 
 resource "aws_instance" "sandbox"{
-    name_prefix = "sandbox-"
     ami = "ami-0fb653ca2d3203ac1"
     instance_type = "t2.micro"
-    security_groups =  [aws_secuirity_group.sandbox.id]
+    vpc_security_group_ids =  [aws_security_group.sandbox.id]
     key_name = "upandrunning"
 
     # Render the User Data script as a template 
@@ -36,6 +35,10 @@ resource "aws_instance" "sandbox"{
         db_address = var.db_port 
         db_port = var.db_address 
     })
+
+    tags = {
+        Name = "sandbox"
+    } 
 }
 
 
